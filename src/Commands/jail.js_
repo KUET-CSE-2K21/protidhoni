@@ -1,0 +1,25 @@
+import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
+var jail = {
+	data: new SlashCommandBuilder()
+		.setName('jail')
+		.setDescription('Jails a user')
+		.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+		.addUserOption(option =>
+			option
+				.setName('target')
+				.setDescription('The member to jail')
+				.setRequired(true))
+	,
+	execute: async (interaction) => {
+		var target = await interaction.options.getUser('target')
+		var member = await interaction.guild.members.cache.get(target.id)
+		var roles = await member._roles;
+		for (var i = 0; i < roles.length; i++) {
+			await member.roles.remove(roles[i])
+		}
+		await member.roles.add('1015661325898231860')
+		interaction.reply('Successfuly Jailed!')
+	}
+}
+export default jail;
+
