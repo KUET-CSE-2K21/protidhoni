@@ -21,15 +21,15 @@ function load(command) {
 		commands_data.push(command.toJSON())
 		Commands.set(command.name, command);
 	} else {
-		console.log(`[WARNING] The command at ${__dirname} is missing a required "data" or "execute" property.`);
+		console.log(`[WARNING] The command at ${__dirname} is missing a required "data" or "execute" property.`)
 	}
 }
 
-const commandFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('.js'))
 
 for (const file of commandFiles) {
-	if (file == 'index.js' || file == 'auth.js') continue;
-	const filePath = path.join(__dirname, file);
-	const command = (await import(filePath)).default;
+	if (file == 'index.js' || file == 'auth.js') continue
+	const filePath = path.join(__dirname, file)
+	const command = (await import(filePath)).default
 	load(command)
 }

@@ -3,9 +3,9 @@ loadLocalEnvironment()
 let config = {
 	token: process.env.TOKEN,
 	id: process.env.ID,
+	mongo: `mongodb+srv://${process.env.MONGO_USER}:${encodeURIComponent(process.env.MONGO_PASS)}@${process.env.MONGO_HOST}/Bot?retryWrites=true&w=majority`,
 	guild_id: '1013805839770984500', //should not be a number
-	channels: {},
-	roles: {},
+	mode: process.env.MODE,
 	global_permissions: {
 		users: {
 			allowed: [],
@@ -16,25 +16,7 @@ let config = {
 			forbidden: []
 		}
 	},
-	commands: {
-		ping: {
-			permisions: {
-				users: {
-					supreme: [],
-					allowed: [],
-					forbidden: ['1014388228377301032']
-				},
-				roles: {
-					supreme: [],
-					allowed: ['1013838270221787268'],
-					forbidden: []
-				},
-				channels: {
-					allowed: [],
-					forbidden: []
-				}
-			}
-		}
-	}
+
 }
+//if (config.mode == "test") config.global_permissions.roles.allowed.push('1013838270221787268')
 export default config

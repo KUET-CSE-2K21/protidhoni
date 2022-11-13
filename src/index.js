@@ -1,11 +1,8 @@
-import { Events, Client, GatewayIntentBits, EmbedBuilder } from 'discord.js'
+
+import { Client, GatewayIntentBits } from 'discord.js'
+import fs from 'fs'
+import { connect } from 'mongoose';
 import config from './config.js'
-import { Commands } from './Commands/index.js'
-import { update_commands } from './update_commands.js';
-
-
-update_commands();
-
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -15,16 +12,12 @@ const client = new Client({
 		GatewayIntentBits.GuildMembers,
 	],
 });
-
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-	const command = Commands.get(interaction.commandName);
-	if (!command) return;
-	try { await command.execute(interaction); }
-	catch (error) {
-		console.error(error);
-		try { await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true }); } catch (e) { console.error(e) }
-	}
-});
-
+const eventFiles = fs.readdirSync("./src/Handlers/").filter(file => file.endsWith('.js'))
+for (const file of eventFiles) {
+	if (file == 'index.js' || file == 'auth.js') continue
+	(await import(`../src/Handlers/${file}`)).default(client)
+}
+await client.updateCommands()
+await client.handleEvents()
+await connect(config.mongo).catch(console.error)
 client.login(config.token)
