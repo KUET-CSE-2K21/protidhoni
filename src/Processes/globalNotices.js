@@ -41,7 +41,7 @@ var CLIENT = undefined
 
 async function read_last_hash() {
 	if (IS_FIRST_TIME) {
-		var temp_hash = (await keyval.findOne({ key: KEY }).exec()).val
+		var temp_hash = (await keyval.findOne({ key: KEY }).exec())
 		if (!temp_hash) {
 			var keYval = new keyval({
 				_id: mongoose.Types.ObjectId(),
@@ -58,6 +58,7 @@ async function read_last_hash() {
 			})
 			state.emit('reading_done')
 		} else {
+			temp_hash = temp_hash.val
 			LAST_HASH = parseInt(temp_hash)
 			IS_FIRST_TIME = false
 			state.emit('reading_done')

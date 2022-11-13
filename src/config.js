@@ -20,3 +20,10 @@ let config = {
 }
 //if (config.mode == "test") config.global_permissions.roles.allowed.push('1013838270221787268')
 export default config
+
+
+/*//////////////////////////////////////////////////////
+@ WILL MOVE ALL CONFS and PERMS TO  MONGODB
+@ for easy maintanace
+
+////////////////////////////////////////////////////*/

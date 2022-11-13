@@ -10,6 +10,5 @@ export function SoftLog(member, title, description, type) {
 		.setTimestamp()
 	if (type = "warn") embed.setColor("#ff0000")
 	if (type = "okay") embed.setColor("#00ff00")
-	console.log(member.avatarURL({ size: 1024, dynamic: true }));
 	channel.send({ embeds: [embed] });
 }

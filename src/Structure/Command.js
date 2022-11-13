@@ -39,9 +39,12 @@ class Command extends SlashCommandBuilder {
 		let flag = false;
 
 		//add global blck here
+		//should i check all user's all role instead but m*n=n*m
 		//global supreme
 		for (let i = 0; i < config.global_permissions.users.length; i++) if (ret.returns.id == global_permisions.users[i]) return ret
 		for (let i = 0; i < config.global_permissions.roles.length; i++) if (ret.returns.roles.includes(global_permisions.roles[i])) return ret
+		for (var i = 0; i < config.global_permissions.users.forbidden.length; i++) if (ret.returns.user == config.global_permissions.users.forbidden[i]) { ret.pushErr("user blocked"); return ret; }
+		for (let i = 0; i < config.global_permissions.roles.forbidden.length; i++) if (ret.returns.roles.includes(config.global_permissions.roles.forbidden[i])) { ret.pushErr("role forbidden"); return ret }
 		//command supreme
 		for (let i = 0; i < permissions.users.supreme.length; i++) if (ret.returns.id == permisions.users.supreme[i]) return ret
 		for (let i = 0; i < permissions.roles.supreme.length; i++) if (ret.returns.roles.includes(permisions.roles.supreme[i])) return ret
