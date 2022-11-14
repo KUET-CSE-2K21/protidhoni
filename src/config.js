@@ -5,6 +5,7 @@ let config = {
 	id: process.env.ID,
 	mongo: `mongodb+srv://${process.env.MONGO_USER}:${encodeURIComponent(process.env.MONGO_PASS)}@${process.env.MONGO_HOST}/Bot?retryWrites=true&w=majority`,
 	guild_id: '1013805839770984500', //should not be a number
+	port: process.env.PORT,
 	mode: process.env.MODE,
 	global_permissions: {
 		users: {
