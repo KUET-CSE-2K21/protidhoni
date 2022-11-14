@@ -22,7 +22,7 @@ maybe we can fetch two, then use second one as backup?
 const URL = 'https://www.kuet.ac.bd/department/CSE/'
 //const SELECTOR = "#gnrlntc .media"
 const SELECTOR_DATE = ".media .date_notice"
-const REPEAT_AFTER = 60000
+const REPEAT_AFTER = 60000 * 5
 const ERROR_COOLDOWN = 6000000
 const MAX_FETCH = 5
 const KEY = "cseNotices"
@@ -135,16 +135,18 @@ function compare() {
 	}
 	NEW_HASH = CURRENT_ANNOUNCEMENTS_HASH[0].hash;
 	CURRENT_ANNOUNCEMENTS_HASH = [] //flush
-	console.log(TO_SEND.length);
+	console.log(`[Process/cseNotices] to send : ${TO_SEND.length}`);
 	state.emit('comparing_done')
 }
 
 state.on('saving_done', () => {
 	CYCLE = false
+	console.log("[Process/cseNotices] stop")
 	TIMEOUT_ID = setTimeout(() => {
 		IS_FIRST_TIME = false
 		if (RUNNING)
 			state.emit('go')
+		console.log("[Process/cseNotices] restart")
 	}, REPEAT_AFTER)
 })
 state.on('error', () => { console.log("err") })
@@ -153,8 +155,8 @@ state.on('comparing_done', save_to_db);//ok trigger
 state.on('crawling_done', compare)
 state.on('reading_done', crawl)
 state.on('go', read_last_hash)
-state.on('go', () => { CYCLE = true })
-let globalNotices = {
+state.on('go', () => { CYCLE = true; console.log("[Process/cseNotices] start") })
+let cseNotices = {
 	start(client) {
 		CLIENT = client
 		state.emit('go')
@@ -171,4 +173,4 @@ let globalNotices = {
 			state.emit('go')
 	}
 }
-export default globalNotices
+export default cseNotices
