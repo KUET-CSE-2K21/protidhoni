@@ -84,7 +84,7 @@ async function save_to_db() {
 	state.emit('saving_done')
 }
 function send() {
-	for (var i = TO_SEND.length - 1; i > 0; i--) {
+	for (var i = TO_SEND.length - 1; i >= 0; i--) {
 		Notice(CLIENT, "Global", TO_SEND[i].text, URL + TO_SEND[i].href, TO_SEND[i].date)
 	}
 	TO_SEND = []; //flush
