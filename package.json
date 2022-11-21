@@ -1,5 +1,5 @@
 {
-  "name": "ilish",
+  "name": "protidhoni",
   "version": "0.0.1",
   "description": "",
   "main": "src/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KUET-CSE-2K21/Ilish.git"
+    "url": "git+https://github.com/KUET-CSE-2K21/protidhoni.git"
   },
   "author": "",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/KUET-CSE-2K21/Ilish/issues"
+    "url": "https://github.com/KUET-CSE-2K21/protidhoni/issues"
   },
-  "homepage": "https://github.com/KUET-CSE-2K21/Ilish#readme",
+  "homepage": "https://github.com/KUET-CSE-2K21/protidhoni#readme",
   "dependencies": {
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.3",

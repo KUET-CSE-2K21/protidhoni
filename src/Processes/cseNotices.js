@@ -85,7 +85,7 @@ async function save_to_db() {
 }
 function send() {
 	for (var i = TO_SEND.length - 1; i >= 0; i--) {
-		Notice(CLIENT, "CSE", TO_SEND[i].text, URL + TO_SEND[i].href, TO_SEND[i].date)
+		Notice(CLIENT, "CSE", TO_SEND[i].text, TO_SEND[i].href, TO_SEND[i].date)
 	}
 	TO_SEND = []; //flush
 }
