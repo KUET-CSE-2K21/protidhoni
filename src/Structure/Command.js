@@ -7,14 +7,20 @@ class Command extends SlashCommandBuilder {
 		var that = this
 		this.permissions = permissions
 		this.execute = async (interaction, client) => {
-			var perm_check = that.permission_check(interaction, that.permissions);
-			var err_resp = ""
-			for (let i = 0; i < perm_check.errors.length; i++) err_resp += perm_check.errors[i]
-			if (err_resp != "") await interaction.reply(err_resp)
-			if (perm_check.overall) execute(interaction, client, perm_check.returns)
+			try {
+				var perm_check = that.permission_check(interaction, that.permissions);
+				var err_resp = ""
+				for (let i = 0; i < perm_check.errors.length; i++) err_resp += perm_check.errors[i]
+				if (err_resp != "") await interaction.reply(err_resp)
+				if (perm_check.overall) execute(interaction, client, perm_check.returns)
+			} catch (e) {
+				try { await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true }); } catch (e) { console.error(e) }
+				console.log(e)
+			}
 		}
 	}
 	permission_check(interaction, permissions) {
+		/* WARNING : UNTESTED CODE */
 		/*	
 		 * Global Supreme, Command supreme  (No block check)
 		 * Permissions
@@ -31,7 +37,9 @@ class Command extends SlashCommandBuilder {
 		//Users
 
 		let ret = new Returns()
+		ret.returns.id = interaction.user.id //are  these async?
 		ret.returns.user = interaction.member
+		ret.returns.member = interaction.member
 		ret.returns.roles = ret.returns.user._roles
 		ret.returns.channel = interaction.channel
 

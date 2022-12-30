@@ -22,7 +22,7 @@ maybe we can fetch two, then use second one as backup?
 const URL = 'https://www.kuet.ac.bd/'
 //const SELECTOR = "#gnrlntc .media"
 const SELECTOR_DATE = ".media .date_notice"
-const REPEAT_AFTER = 60000 * 5
+const REPEAT_AFTER = 60000 * 30
 const ERROR_COOLDOWN = 6000000
 const MAX_FETCH = 5
 const KEY = "globalNotices"
