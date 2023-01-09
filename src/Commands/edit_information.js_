@@ -1,0 +1,68 @@
+import id from "../id.js";
+import Command from "../Structure/Command.js";
+let edit_information = new Command({
+	users: {
+		supreme: [],
+		allowed: [],
+		forbidden: []
+	},
+	roles: {
+		supreme: [],
+		allowed: [id.roles.Managers],//change this on prodcution
+		forbidden: []
+	},
+	channels: {
+		allowed: [],
+		forbidden: []
+	}
+}, async (interaction, client, attributes) => {
+
+})
+	.setName('edit-information')
+	.setDescription('Edit form data')
+	.addStringOption(option =>
+		option
+			.setName('phone')
+			.setDescription('Your phone no'))
+	.addStringOption(option =>
+		option
+			.setName('email')
+			.setDescription('Your email'))
+	.addStringOption(option =>
+		option
+			.setName('blood-group')
+			.setDescription('Your Blood group'))
+	.addStringOption(option =>
+		option
+			.setName('permanent-address')
+			.setDescription('format: Address first line;District;Division'))
+	.addStringOption(option =>
+		option
+			.setName('local-gaurdian-or-room-mate')
+			.setDescription('format: name;relation;phone number'))
+	.addStringOption(option =>
+		option
+			.setName('emergency-contact')
+			.setDescription('format: name;relation;phone number'))
+	.addStringOption(option =>
+		option
+			.setName('online-presence')
+			.setDescription('format: service1,link to profile;service2,id;...'))
+	.addStringOption(option =>
+		option
+			.setName('skills')
+			.setDescription('format: skill1;skill2;...'))
+	.addStringOption(option =>
+		option
+			.setName('birthdate')
+			.setDescription('format: dd/mm'))
+	.addStringOption(option =>
+		option
+			.setName('note')
+			.setDescription('extra information'))
+	.addStringOption(option =>
+		option
+			.setName('emergency-note')
+			.setDescription('extra information'))
+
+export default edit_information
