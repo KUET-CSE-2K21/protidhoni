@@ -15,6 +15,8 @@ let ping = new Command({
 		forbidden: []
 	}
 }, async (interaction, client, attributes) => {
+	//await interaction.channel.bulkDelete(5);
+	//console.log(interaction.member.voice.setMute(false));
 	const message = await interaction.deferReply({
 		fetchReply: true
 	})

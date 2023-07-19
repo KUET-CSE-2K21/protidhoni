@@ -24,7 +24,7 @@ const URL = 'https://www.kuet.ac.bd/department/CSE/'
 const SELECTOR_DATE = ".media .date_notice"
 const REPEAT_AFTER = 60000 * 30
 const ERROR_COOLDOWN = 6000000
-const MAX_FETCH = 5
+const MAX_FETCH = 20
 const KEY = "cseNotices"
 
 //Runtime 

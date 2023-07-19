@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from 'discord.js';
 import Returns from './Returns.js'
 import config from '../config.js'
 class Command extends SlashCommandBuilder {
-	constructor(permissions, execute) {
+	constructor(permissions, execute) { // add autcomplete here
 		super()
 		var that = this
 		this.permissions = permissions

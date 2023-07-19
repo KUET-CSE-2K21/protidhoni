@@ -55,7 +55,7 @@ let jail = new Command({
 	.addStringOption(option =>
 		option
 			.setName('reason')
-			.setDescription('Why he is getting jailed')
+			.setDescription('Why is he getting jailed')
 			.setRequired(true))
 export default jail;
 
